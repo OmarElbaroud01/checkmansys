@@ -1,0 +1,118 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #001f3f;
+  color: white;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height ensures the form is always centered */
+  overflow: hidden; /* Ensures no scrolling */
+  background-image: url("path_to_background_image.jpg"); /* Optional: Add a background image */
+  background-size: cover; /* Cover the entire viewport */
+  background-repeat: no-repeat;
+  animation: backgroundShift 20s infinite alternate ease-in-out;
+}
+
+.login-container {
+  background: linear-gradient(145deg, #003366, #004a70);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 360px; /* Suitable width for the login form */
+  transform: scale(0); /* Start from a scaled down state */
+  animation: popIn 0.6s 0.5s forwards ease-out; /* Delayed pop in effect */
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 24px; /* Adds more space below the heading */
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeInUp 1s 0.8s forwards ease-out;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeInUp 1s 1s forwards ease-out;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transform: scale(1);
+  transition: background-color 0.3s, transform 0.2s;
+  opacity: 0;
+  animation: fadeInUp 1s 1.2s forwards ease-out;
+}
+
+button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Keyframes for animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes backgroundShift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 100%;
+  }
+}
+
+/* Responsive adjustments for smaller devices */
+@media (max-width: 600px) {
+  .login-container {
+    padding: 20px;
+    width: 90%; /* More margin around the form on smaller screens */
+  }
+
+  h1 {
+    font-size: 1.5rem; /* Smaller font size for small screens */
+  }
+}

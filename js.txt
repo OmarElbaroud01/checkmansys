@@ -1,0 +1,134 @@
+document.addEventListener('DOMContentLoaded', function() {
+    updateTable();  // Load and display data from local storage on page load
+});
+
+document.getElementById('checkEntryForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    addOrUpdateEntry();
+});
+
+let currentIndex = -1; // Global variable to track the current index for editing
+
+function addOrUpdateEntry() {
+    const formData = gatherFormData();
+    let entries = JSON.parse(localStorage.getItem('checkEntries')) || [];
+
+    if (currentIndex === -1) { // Adding new entry
+        entries.unshift(formData); // Adds the entry at the start of the array
+        alert("New check entry added successfully.");
+        localStorage.setItem('checkEntries', JSON.stringify(entries));
+    } else { // Updating existing entry
+        if (confirm("Are you sure you want to update this entry?")) {
+            entries[currentIndex] = formData;
+            alert("Check entry updated successfully.");
+            document.getElementById('submitBtn').textContent = 'Add Check'; // Reset button text after update
+            currentIndex = -1; // Reset currentIndex after update
+            localStorage.setItem('checkEntries', JSON.stringify(entries));
+        }
+    }
+    updateTable();
+    clearForm();
+}
+
+function gatherFormData() {
+    return {
+        studentID: document.getElementById('studentID').value,
+        checkName: document.getElementById('checkName').value,
+        phoneNumber: document.getElementById('phoneNumber').value,
+        checkNumber: document.getElementById('checkNumber').value,
+        amount: parseFloat(document.getElementById('amount').value),
+        insertDate: document.getElementById('insertDate').value,
+        depositDate: document.getElementById('depositDate').value,
+        checkStatus: document.getElementById('checkStatus').value
+    };
+}
+
+function editEntry(index) {
+    currentIndex = index;
+    const entry = JSON.parse(localStorage.getItem('checkEntries'))[index];
+    loadFormData(entry);
+    document.getElementById('submitBtn').textContent = 'Save Data'; // Change button text to "Save Data"
+}
+
+function loadFormData(entry) {
+    document.getElementById('studentID').value = entry.studentID;
+    document.getElementById('checkName').value = entry.checkName;
+    document.getElementById('phoneNumber').value = entry.phoneNumber;
+    document.getElementById('checkNumber').value = entry.checkNumber;
+    document.getElementById('amount').value = entry.amount;
+    document.getElementById('insertDate').value = entry.insertDate;
+    document.getElementById('depositDate').value = entry.depositDate;
+    document.getElementById('checkStatus').value = entry.checkStatus;
+}
+
+function deleteEntry(index) {
+    if (confirm("Are you sure you want to delete this entry?")) {
+        let entries = JSON.parse(localStorage.getItem('checkEntries'));
+        entries.splice(index, 1);
+        localStorage.setItem('checkEntries', JSON.stringify(entries));
+        updateTable();
+        clearForm();
+    }
+}
+
+function updateTable() {
+    const entries = JSON.parse(localStorage.getItem('checkEntries')) || [];
+    fillTable(entries);
+}
+
+function clearForm() {
+    document.getElementById('checkEntryForm').reset();
+    document.getElementById('submitBtn').textContent = 'Add Check'; // Reset button text to default
+    currentIndex = -1; // Reset currentIndex to enable adding new entry
+}
+
+document.getElementById('searchForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    performSearch();
+});
+
+function performSearch() {
+    const filteredEntries = filterEntries();
+    fillTable(filteredEntries);
+}
+
+function filterEntries() {
+    const studentID = document.getElementById('searchStudentID').value;
+    const name = document.getElementById('searchName').value.toLowerCase();
+    const depositDate = document.getElementById('searchDepositDate').value;
+    const insertDate = document.getElementById('searchInsertDate').value;
+    const entries = JSON.parse(localStorage.getItem('checkEntries')) || [];
+    return entries.filter(entry => {
+        return (!studentID || entry.studentID.includes(studentID)) &&
+               (!name || entry.checkName.toLowerCase().includes(name)) &&
+               (!depositDate || entry.depositDate === depositDate) &&
+               (!insertDate || entry.insertDate === insertDate);
+    });
+}
+
+function fillTable(entries) {
+    const tableBody = document.getElementById('entriesTable').getElementsByTagName('tbody')[0];
+    tableBody.innerHTML = '';
+    entries.forEach((entry, index) => {
+        const row = tableBody.insertRow();
+        Object.keys(entry).forEach(key => {
+            const cell = row.insertCell();
+            cell.innerText = entry[key];
+        });
+        const actionsCell = row.insertCell();
+        actionsCell.innerHTML = `<button onclick="editEntry(${index})" class="edit-button">Edit</button> <button onclick="deleteEntry(${index})" class="delete-button">Delete</button>`;
+    });
+    document.getElementById('totalEntries').innerText = 'Total Entries: ' + entries.length;
+}
+
+// Function to handle footer visibility on scroll
+window.addEventListener('scroll', function() {
+    const footer = document.querySelector('footer');
+    let st = window.pageYOffset || document.documentElement.scrollTop;
+    if (st > 100) {  // Adjust as per your specific needs
+        footer.style.transform = 'translateY(100%)';
+        footer.style.transition = 'transform 0.3s ease-in-out';
+    } else {
+        footer.style.transform = 'translateY(0)';
+    }
+});

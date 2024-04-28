@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Export Data - ALCT Checks Management System</title>
+    <link rel="stylesheet" href="export.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <ul>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="logs.html">Logs</a></li>
+        <li><a href="export.html">Export</a></li>
+        <li><a href="/index.html" id="logoutLink">Log out</a></li>
+      </ul>
+    </nav>
+    <div class="container">
+      <header class="page-header">
+        <h1>Export Check Entries</h1>
+      </header>
+      <div class="filters">
+        <div class="filter-item">
+          <label for="filterByDepositDate">Search by Deposit Date:</label>
+          <input
+            type="date"
+            id="filterByDepositDate"
+            placeholder="Deposit Date"
+          />
+        </div>
+        <div class="filter-item">
+          <label for="filterByInsertDate">Search by Insert Date:</label>
+          <input
+            type="date"
+            id="filterByInsertDate"
+            placeholder="Insert Date"
+          />
+        </div>
+        <button onclick="applyFilters()">Apply Filters</button>
+      </div>
+
+      <div id="dataCount" class="data-count">Showing 0 entries</div>
+      <div id="noDataMessage" class="no-data-message">No data found</div>
+
+      <table id="exportTable">
+        <thead>
+          <tr>
+            <th>
+              <input
+                type="checkbox"
+                id="selectAll"
+                onclick="toggleAllCheckboxes(this)"
+              />
+            </th>
+            <th>Check Name</th>
+            <th>Phone Number</th>
+            <th>Check Number</th>
+            <th>Amount</th>
+            <th>Deposit Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Rows will be dynamically filled -->
+        </tbody>
+      </table>
+
+      <div class="export-buttons">
+        <button onclick="exportToCSV()" id="expcsv">Export to CSV</button>
+        <button onclick="exportToPDF()" id="exppdf">Export to PDF</button>
+      </div>
+    </div>
+    <script src="export.js"></script>
+  </body>
+</html>

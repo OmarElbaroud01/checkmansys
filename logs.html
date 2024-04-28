@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Logs - ALCT Checks Management System</title>
+    <link rel="stylesheet" href="logs.css" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="logs.html">Logs</a></li>
+        <li><a href="export.html">Export</a></li>
+        <li><a href="/index.html" id="logoutLink">Log out</a></li>
+      </ul>
+    </nav>
+    <div class="container">
+      <h2 class="page-header">Operation Logs</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Date/Time</th>
+            <th>User</th>
+            <th>Operation</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody id="logsContainer">
+          <!-- Log entries will be dynamically inserted here by logs.js -->
+        </tbody>
+      </table>
+    </div>
+    <script src="logs.js"></script>
+  </body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - ALCT Checks Management System</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li id="welcomeMessage">Welcome, User</li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="logs.html">Logs</a></li>
+        <li><a href="export.html">Export</a></li>
+        <li><a href="/index.html" id="logoutLink">Log out</a></li>
+      </ul>
+    </nav>
+    <header class="hero">
+      <h1 style="text-align: center">
+        Welcome to ALCT Checks Management System
+      </h1>
+      <h2 style="text-align: center">Manage Your Checks Efficiently</h2>
+    </header>
+    <main>
+      <div id="form-container">
+        <section id="check-form">
+          <h2>Enter Check Details</h2>
+          <div id="operationMessage"></div>
+          <form id="checkEntryForm">
+            <label for="studentID">Student ID:</label>
+            <input
+              type="text"
+              id="studentID"
+              name="studentID"
+              placeholder="Enter Student ID"
+              required
+            />
+            <label for="checkName">Check Name:</label>
+            <input
+              type="text"
+              id="checkName"
+              name="checkName"
+              placeholder="Enter Check Name"
+              required
+            />
+            <label for="phoneNumber">Phone Number:</label>
+            <input
+              type="text"
+              id="phoneNumber"
+              name="phoneNumber"
+              placeholder="Enter Phone Number"
+              required
+            />
+            <label for="checkNumber">Check Number:</label>
+            <input
+              type="text"
+              id="checkNumber"
+              name="checkNumber"
+              placeholder="Enter Check Number"
+              required
+            />
+            <label for="amount">Amount:</label>
+            <input
+              type="number"
+              id="amount"
+              name="amount"
+              placeholder="Enter Amount"
+              required
+            />
+            <label for="insertDate">Insert Date:</label>
+            <input type="date" id="insertDate" name="insertDate" required />
+            <label for="depositDate">Deposit Date:</label>
+            <input type="date" id="depositDate" name="depositDate" required />
+            <label for="checkStatus">Check Status:</label>
+            <select id="checkStatus" name="checkStatus" required>
+              <option value="Pending">Pending</option>
+              <option value="Rejected">Rejected</option>
+              <option value="Deposited">Deposited</option>
+              <option value="No Money">No Money</option>
+            </select>
+            <button type="submit" id="submitBtn">Add Check</button>
+          </form>
+        </section>
+        <section id="search-section">
+          <h2>Search Entries</h2>
+          <form id="searchForm">
+            <label for="searchStudentID">Search by Student ID:</label>
+            <input
+              type="text"
+              id="searchStudentID"
+              name="searchStudentID"
+              placeholder="Enter Student ID"
+            />
+            <label for="searchName">Search by Name:</label>
+            <input
+              type="text"
+              id="searchName"
+              name="searchName"
+              placeholder="Enter Name"
+            />
+            <label for="searchDepositDate">Search by Deposit Date:</label>
+            <input
+              type="date"
+              id="searchDepositDate"
+              name="searchDepositDate"
+            />
+            <label for="searchInsertDate">Search by Insert Date:</label>
+            <input type="date" id="searchInsertDate" name="searchInsertDate" />
+            <button type="submit">Search</button>
+          </form>
+        </section>
+      </div>
+      <section id="data-display">
+        <h2>Check Entries</h2>
+        <div id="totalEntries">Total Entries: 0</div>
+        <table id="entriesTable">
+          <thead>
+            <tr>
+              <th>Student ID</th>
+              <th>Check Name</th>
+              <th>Phone Number</th>
+              <th>Check Number</th>
+              <th>Amount</th>
+              <th>Insert Date</th>
+              <th>Deposit Date</th>
+              <th>Status</th>
+              <th>User</th>
+              <!-- New User column for the username -->
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </main>
+    <footer>
+      Contact: 0680464066, oelbaroudi@acamorocco.org. © 2024 ALCT Checks
+      Management System. All rights reserved.
+    </footer>
+    <script src="index.js"></script>
+  </body>
+</html>

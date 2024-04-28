@@ -1,0 +1,175 @@
+/* General Styles */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #001f3f; /* Dark blue background */
+  color: white;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Navigation Styles */
+nav {
+  background-color: #0074d9; /* Blue */
+  padding: 0.5rem 0;
+  text-align: center;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav ul li {
+  margin: 0 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a:focus {
+  background-color: #001f3f;
+  border-radius: 5px;
+}
+
+/* Container for Export Page Content */
+.container {
+  background-color: #004a70; /* Darker blue background */
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.5s ease-out;
+}
+
+.page-header {
+  color: #ade6ff; /* Lighter blue for text */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.filters {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.filters label {
+  margin-right: 10px;
+}
+
+.filters input,
+.filters button {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+.filters button {
+  background-color: #28a745; /* Green for buttons */
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.filters button:hover {
+  background-color: #1e6b34;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #005a9e; /* Darker blue for header */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+  }
+
+  .filters label,
+  .filters input,
+  .filters button {
+    width: 100%;
+    margin-top: 5px;
+  }
+
+  nav ul {
+    flex-direction: column;
+  }
+
+  nav ul li a {
+    padding: 10px;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Button Styling for Export to CSV and PDF */
+#expcsv,
+#exppdf {
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
+  margin-top: 10px;
+}
+
+#expcsv {
+  background-color: #0d7111; /* Green color for CSV export button */
+}
+
+#exppdf {
+  background-color: #bd180c; /* Red color for PDF export button */
+  margin-left: 5px;
+}
+
+#expcsv:hover,
+#exppdf:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+#expcsv:active,
+#exppdf:active {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  transform: translateY(1px);
+}
